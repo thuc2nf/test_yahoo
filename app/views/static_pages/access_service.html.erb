@@ -1,0 +1,36 @@
+<span class="yconnectLogin"></span>
+
+<script type="text/javascript">
+  window.yconnectInit = function() {
+      YAHOO.JP.yconnect.Authorization.init({
+          button: {
+              format: "image",
+              type: "a",
+              textType:"a",
+              width: 196,
+              height: 38,
+              className: "yconnectLogin"
+          },
+          authorization: {
+              clientId: "dj0zaiZpPVFyS1dFcWFKVlo3byZzPWNvbnN1bWVyc2VjcmV0Jng9ODY-",
+              redirectUri: "http://localhost:9000/callback/",
+              scope: "openid email profile address",
+              state: "5Ye65oi744KKT0vjgafjgZnjgojjgIHlhYjovKnjg4M",
+              nonce: "SUTljqjjga8uLi7jgrrjg4Plj4vjgaDjgoc",
+              windowWidth: "500",
+              windowHeight: "400"
+          },
+          onError: function(res) {
+              // エラー発生時のコールバック関数
+          },
+          onCancel: function(res) {
+              // 同意キャンセルされた時のコールバック関数
+          }
+      });
+  };
+  (function(){
+    var fs = document.getElementsByTagName("script")[0], s = document.createElement("script");
+    s.setAttribute("src", "https://s.yimg.jp/images/login/yconnect/auth/1.0.3/auth-min.js");
+    fs.parentNode.insertBefore(s, fs);
+  })();
+</script>

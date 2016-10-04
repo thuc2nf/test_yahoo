@@ -1,0 +1,35 @@
+<%= form_tag do %>
+  <%= select_tag "countries", options_from_collection_for_select(@countries, "id", "name") %>
+  <select name="destination[]"  id="destination">
+      <option>district</option>
+  </select>
+<% end %>
+
+
+
+<script type="text/javascript">
+  // $.get( "ajax/test.html", function( data ) {
+  //   $( ".result" ).html( data );
+  //   alert( "Load was performed." );
+  // });
+
+  $( document ).ready(function() {
+    $( "#countries" ).change(function() {
+      var optionSelected = $("option:selected", this);
+      var valueSelected = this.value;
+      console.log(valueSelected);
+      $.getJSON("http://localhost:9000/countries/"+valueSelected+"/districts",function(data){
+          console.log(data.districts[0].name);
+          var source = data;
+          var des = $('select#destination');
+          options = "";
+          for(var i=0;i<data.districts.length;i++){
+              // source.innerHTML+="<option>"+data[i]+"</option>";
+              options += "<option>"+data.districts[i].name+"</option>";
+              console.log(data.districts[i].name);
+          }
+          des.html( options );
+      });
+    });
+  });
+</script>
